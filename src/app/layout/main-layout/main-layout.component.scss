@@ -1,0 +1,15 @@
+nav a {
+  @apply text-gray-700 hover:text-black transition duration-200;
+}
+
+nav a.router-link-active {
+  @apply font-bold underline;
+}
+
+main {
+  @apply min-h-[70vh];
+}
+
+footer {
+  @apply text-sm text-gray-500;
+}
