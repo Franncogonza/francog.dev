@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:ssr": "ng build && ng run francog-dev:server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:francog-dev": "node dist/francog-dev/server/server.mjs"
+    "serve:ssr": "npm run build:ssr && node dist/francog-dev/server/server.mjs",
+    "dev:ssr": "ng run francog-dev:serve-ssr"
   },
   "private": true,
   "dependencies": {
@@ -33,12 +34,14 @@
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
+    "browser-sync": "^3.0.4",
     "jasmine-core": "~5.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.5.3",
     "typescript": "~5.7.2"
   }
 }
