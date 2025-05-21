@@ -28,4 +28,16 @@ export class MainLayoutComponent {
       this.isMenuOpen = false;
     }
   }
+
+  isDarkMode = false;
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    const html = document.documentElement;
+    if (this.isDarkMode) {
+      html.classList.add('dark');
+    } else {
+      html.classList.remove('dark');
+    }
+  }
 }
