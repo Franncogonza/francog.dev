@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .container {
+    @apply w-full max-w-6xl mx-auto px-4;
+  }
+
+  .section {
+    @apply py-16 min-h-[80vh];
+  }
+
+  .heading-xl {
+    @apply text-5xl font-bold mb-6;
+  }
+
+  .btn {
+    @apply inline-block px-5 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition;
+  }
+
+  .btn-secondary {
+    @apply inline-block px-5 py-2 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 transition;
+  }
+
+  .text-muted {
+    @apply text-gray-500;
+  }
+}

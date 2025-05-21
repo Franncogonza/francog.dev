@@ -1,17 +1,52 @@
-<div class="max-w-4xl mx-auto px-4">
-  <nav class="p-4 bg-gray-200 flex gap-4">
-    <a routerLink="/" routerLinkActive="font-bold">Home</a>
-    <a routerLink="/about" routerLinkActive="font-bold">Sobre mí</a>
-    <a routerLink="/portfolio" routerLinkActive="font-bold">Portfolio</a>
-    <a routerLink="/blog" routerLinkActive="font-bold">Blog</a>
-    <a routerLink="/contact" routerLinkActive="font-bold">Contacto</a>
+<div class="flex flex-col min-h-screen">
+  <!-- NAVBAR -->
+  <nav
+    class="sticky top-0 z-50 flex items-center justify-between py-4 px-6 border-b border-gray-200 bg-gray-100 shadow-sm"
+  >
+    <div class="text-xl font-bold">FrancoDev</div>
+
+    <!-- Botón hamburguesa (solo mobile) -->
+    <button
+      class="sm:hidden p-2 border border-gray-300 rounded-md"
+      (click)="isMenuOpen = !isMenuOpen"
+    >
+      <span *ngIf="!isMenuOpen">☰</span>
+      <span *ngIf="isMenuOpen">✖</span>
+    </button>
+
+    <!-- Links Desktop -->
+    <div class="hidden sm:flex gap-6">
+      <a routerLink="/" routerLinkActive="font-bold">Home</a>
+      <a routerLink="/about" routerLinkActive="font-bold">Sobre mí</a>
+      <a routerLink="/portfolio" routerLinkActive="font-bold">Portfolio</a>
+      <a routerLink="/blog" routerLinkActive="font-bold">Blog</a>
+      <a routerLink="/contact" routerLinkActive="font-bold">Contacto</a>
+    </div>
   </nav>
 
-  <main class="p-6">
-    <router-outlet></router-outlet>
+  <!-- Links Mobile -->
+  <div
+    *ngIf="isMenuOpen && screenIsMobile"
+    class="flex flex-col gap-4 px-6 py-4 bg-gray-100 border-b border-gray-200 sm:hidden"
+  >
+    <a routerLink="/" routerLinkActive="font-bold" (click)="isMenuOpen = false">Home</a>
+    <a routerLink="/about" routerLinkActive="font-bold" (click)="isMenuOpen = false">Sobre mí</a>
+    <a routerLink="/portfolio" routerLinkActive="font-bold" (click)="isMenuOpen = false"
+      >Portfolio</a
+    >
+    <a routerLink="/blog" routerLinkActive="font-bold" (click)="isMenuOpen = false">Blog</a>
+    <a routerLink="/contact" routerLinkActive="font-bold" (click)="isMenuOpen = false">Contacto</a>
+  </div>
+
+  <!-- CONTENIDO -->
+  <main class="flex-1">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 
-  <footer class="p-4 bg-gray-200 text-center">
-    <p>&copy; 2025 Mi Portafolio. Todos los derechos reservados.</p>
+  <!-- FOOTER -->
+  <footer class="py-6 border-t border-gray-200 bg-gray-100 text-center text-sm text-gray-500">
+    © 2025 Franco Gonzalez. Todos los derechos reservados.
   </footer>
 </div>
