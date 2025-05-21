@@ -28,4 +28,8 @@
   .text-muted {
     @apply text-gray-500 dark:text-gray-400;
   }
+
+  .badge {
+    @apply bg-blue-600 text-white text-xs px-3 py-1 rounded-full;
+  }
 }
