@@ -1,29 +1,61 @@
 <div class="flex flex-col min-h-screen">
   <!-- NAVBAR -->
   <nav
-    class="sticky top-0 z-50 flex items-center justify-between py-4 px-6 border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 shadow-sm"
+    class="sticky top-0 z-50 flex items-center justify-between py-4 px-6 border-b border-gray-200 dark:border-gray-700 backdrop-blur-lg bg-white/70 dark:bg-neutral-900/70 shadow-md"
   >
-    <div class="text-xl font-bold">FrancoDev</div>
-    <button
-      (click)="toggleDarkMode()"
-      class="p-2 rounded-md border border-gray-300"
-      aria-label="Toggle Dark Mode"
-    >
-      <span *ngIf="!isDarkMode">🌙</span>
-      <span *ngIf="isDarkMode">☀️</span>
-    </button>
+    <!-- Logo -->
+    <div class="text-2xl font-bold text-neutral-900 dark:text-white">
+      Franco<span class="text-blue-600">Dev</span>
+    </div>
 
-    <!-- Botón hamburguesa (solo mobile) -->
-    <button
-      class="sm:hidden p-2 border border-gray-300 rounded-md"
-      (click)="isMenuOpen = !isMenuOpen"
-    >
-      <span *ngIf="!isMenuOpen">☰</span>
-      <span *ngIf="isMenuOpen">✖</span>
-    </button>
+    <!-- Botones derecha -->
+    <div class="flex items-center gap-4">
+      <!-- Descargar CV Desktop -->
+      <a
+        href="/assets/FrancoGonzalez-CV-es.pdf"
+        target="_blank"
+        rel="noopener"
+        class="hidden sm:inline-flex items-center gap-2 rounded-lg px-4 py-2 border border-neutral-300 bg-white/70 backdrop-blur-md text-neutral-800 hover:bg-white/90 hover:shadow-lg dark:bg-neutral-900/70 dark:text-neutral-200 dark:hover:bg-neutral-900/90 transition"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 16.5v-12m0 12l3.75-3.75M12 16.5l-3.75-3.75M4.5 19.5h15"
+          />
+        </svg>
+        Ver CV
+      </a>
+
+      <!-- Toggle Dark Mode -->
+      <button
+        (click)="toggleDarkMode()"
+        class="p-2 rounded-md border border-gray-300 dark:border-gray-700"
+        aria-label="Toggle Dark Mode"
+      >
+        <span *ngIf="!isDarkMode">🌙</span>
+        <span *ngIf="isDarkMode">☀️</span>
+      </button>
+
+      <!-- Botón hamburguesa (mobile) -->
+      <button
+        class="sm:hidden p-2 border border-gray-300 rounded-md"
+        (click)="isMenuOpen = !isMenuOpen"
+      >
+        <span *ngIf="!isMenuOpen">☰</span>
+        <span *ngIf="isMenuOpen">✖</span>
+      </button>
+    </div>
 
     <!-- Links Desktop -->
-    <div class="hidden sm:flex gap-6">
+    <div class="hidden sm:flex gap-6 text-neutral-700 dark:text-neutral-200">
       <a routerLink="/" routerLinkActive="font-bold">Home</a>
       <a routerLink="/about" routerLinkActive="font-bold">Sobre mí</a>
       <a routerLink="/portfolio" routerLinkActive="font-bold">Portfolio</a>
@@ -35,7 +67,7 @@
   <!-- Links Mobile -->
   <div
     *ngIf="isMenuOpen && screenIsMobile"
-    class="flex flex-col gap-4 px-6 py-4 bg-gray-100 border-b border-gray-200 sm:hidden"
+    class="flex flex-col gap-4 px-6 py-4 bg-white/80 dark:bg-neutral-900/90 border-b border-gray-200 dark:border-gray-700 sm:hidden"
   >
     <a routerLink="/" routerLinkActive="font-bold" (click)="isMenuOpen = false">Home</a>
     <a routerLink="/about" routerLinkActive="font-bold" (click)="isMenuOpen = false">Sobre mí</a>
@@ -44,10 +76,19 @@
     >
     <a routerLink="/blog" routerLinkActive="font-bold" (click)="isMenuOpen = false">Blog</a>
     <a routerLink="/contact" routerLinkActive="font-bold" (click)="isMenuOpen = false">Contacto</a>
+    <a
+      href="/assets/FrancoGonzalez-CV-es.pdf"
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-2 rounded-lg px-4 py-2 border border-neutral-300 bg-white/70 backdrop-blur-md text-neutral-800 hover:bg-white/90 hover:shadow-lg dark:bg-neutral-900/70 dark:text-neutral-200 dark:hover:bg-neutral-900/90 transition"
+      (click)="isMenuOpen = false"
+    >
+      Ver CV
+    </a>
   </div>
 
   <!-- CONTENIDO -->
-  <main class="flex-1 bg-white dark:bg-gray-950 text-black dark:text-white">
+  <main class="flex-1 bg-white dark:bg-neutral-950 text-black dark:text-white">
     <div class="max-w-6xl mx-auto px-6 py-16">
       <router-outlet></router-outlet>
     </div>
@@ -55,17 +96,28 @@
 
   <!-- FOOTER -->
   <footer
-    class="py-6 border-t border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 text-center text-sm text-gray-500 dark:text-gray-400"
+    class="py-6 border-t border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md text-center text-sm text-gray-500 dark:text-gray-400"
   >
     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
       <p>© 2025 Franco Gonzalez. Todos los derechos reservados.</p>
-
       <div class="flex gap-6">
-        <a href="https://github.com/Franncogonza" target="_blank" rel="noopener"> GitHub </a>
-        <a href="https://linkedin.com/in/francogonzalezweb" target="_blank" rel="noopener">
+        <a
+          href="https://github.com/Franncogonza"
+          target="_blank"
+          rel="noopener"
+          class="hover:underline"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://linkedin.com/in/francogonzalezweb"
+          target="_blank"
+          rel="noopener"
+          class="hover:underline"
+        >
           LinkedIn
         </a>
-        <a routerLink="/contact">Contacto</a>
+        <a routerLink="/contact" class="hover:underline">Contacto</a>
       </div>
     </div>
   </footer>
