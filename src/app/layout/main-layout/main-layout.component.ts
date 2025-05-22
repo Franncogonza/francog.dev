@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PlatformService } from '../../../services/platform.service';
 
 @Component({
   standalone: true,
@@ -12,32 +13,39 @@ import { CommonModule } from '@angular/common';
 export class MainLayoutComponent {
   isMenuOpen = false;
   screenIsMobile = false;
+  isDarkMode = false;
+
+  private readonly platform = inject(PlatformService);
 
   ngOnInit() {
-    this.checkScreenSize();
+    if (this.platform.isBrowser()) {
+      this.checkScreenSize();
+    }
   }
 
   @HostListener('window:resize')
-  onResize() {
-    this.checkScreenSize();
-  }
-
   checkScreenSize() {
-    this.screenIsMobile = window.innerWidth < 640;
-    if (!this.screenIsMobile) {
-      this.isMenuOpen = false;
+    if (this.platform.isBrowser()) {
+      this.screenIsMobile = window.innerWidth < 640;
+      if (!this.screenIsMobile) {
+        this.isMenuOpen = false;
+      }
     }
   }
-
-  isDarkMode = false;
 
   toggleDarkMode() {
-    this.isDarkMode = !this.isDarkMode;
-    const html = document.documentElement;
-    if (this.isDarkMode) {
-      html.classList.add('dark');
-    } else {
-      html.classList.remove('dark');
+    if (this.platform.isBrowser()) {
+      this.isDarkMode = !this.isDarkMode;
+      const html = document.documentElement;
+      if (this.isDarkMode) {
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
     }
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }

@@ -1,11 +1,30 @@
 <div class="flex flex-col min-h-screen">
   <!-- NAVBAR -->
   <nav
-    class="sticky top-0 z-50 flex items-center justify-between py-4 px-6 border-b border-gray-200 dark:border-gray-700 backdrop-blur-lg bg-white/70 dark:bg-neutral-900/70 shadow-md"
+    class="sticky top-0 z-50 flex items-center justify-between py-4 px-6 backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 border-b border-neutral-200 dark:border-neutral-700 shadow-md"
   >
     <!-- Logo -->
     <div class="text-2xl font-bold text-neutral-900 dark:text-white">
       Franco<span class="text-blue-600">Dev</span>
+    </div>
+
+    <!-- Links Desktop -->
+    <div class="hidden sm:flex gap-6 items-center text-neutral-700 dark:text-neutral-200">
+      <a routerLink="/" routerLinkActive="font-bold" class="hover:scale-[1.05] transition"
+        >🏠 Home</a
+      >
+      <a routerLink="/about" routerLinkActive="font-bold" class="hover:scale-[1.05] transition"
+        >👤 Sobre mí</a
+      >
+      <a routerLink="/portfolio" routerLinkActive="font-bold" class="hover:scale-[1.05] transition"
+        >🛠 Portfolio</a
+      >
+      <a routerLink="/blog" routerLinkActive="font-bold" class="hover:scale-[1.05] transition"
+        >📝 Blog</a
+      >
+      <a routerLink="/contact" routerLinkActive="font-bold" class="hover:scale-[1.05] transition"
+        >💼 Contacto</a
+      >
     </div>
 
     <!-- Botones derecha -->
@@ -15,36 +34,22 @@
         href="/assets/FrancoGonzalez-CV-es.pdf"
         target="_blank"
         rel="noopener"
-        class="hidden sm:inline-flex items-center gap-2 rounded-lg px-4 py-2 border border-neutral-300 bg-white/70 backdrop-blur-md text-neutral-800 hover:bg-white/90 hover:shadow-lg dark:bg-neutral-900/70 dark:text-neutral-200 dark:hover:bg-neutral-900/90 transition"
+        class="hidden sm:inline-flex items-center gap-2 rounded-lg px-5 py-2 border border-neutral-300 bg-white/70 backdrop-blur-md text-neutral-900 hover:bg-white hover:shadow-lg dark:bg-neutral-900/70 dark:text-neutral-200 dark:hover:bg-neutral-900/90 hover:scale-[1.03] active:scale-95 transition"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-5 h-5"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 16.5v-12m0 12l3.75-3.75M12 16.5l-3.75-3.75M4.5 19.5h15"
-          />
-        </svg>
-        Ver CV
+        🚀 Descargar CV
       </a>
 
       <!-- Toggle Dark Mode -->
       <button
         (click)="toggleDarkMode()"
-        class="p-2 rounded-md border border-gray-300 dark:border-gray-700"
+        class="p-2 rounded-md border border-neutral-300 dark:border-neutral-700"
         aria-label="Toggle Dark Mode"
       >
         <span *ngIf="!isDarkMode">🌙</span>
         <span *ngIf="isDarkMode">☀️</span>
       </button>
 
-      <!-- Botón hamburguesa (mobile) -->
+      <!-- Botón hamburguesa -->
       <button
         class="sm:hidden p-2 border border-gray-300 rounded-md"
         (click)="isMenuOpen = !isMenuOpen"
@@ -53,15 +58,6 @@
         <span *ngIf="isMenuOpen">✖</span>
       </button>
     </div>
-
-    <!-- Links Desktop -->
-    <div class="hidden sm:flex gap-6 text-neutral-700 dark:text-neutral-200">
-      <a routerLink="/" routerLinkActive="font-bold">Home</a>
-      <a routerLink="/about" routerLinkActive="font-bold">Sobre mí</a>
-      <a routerLink="/portfolio" routerLinkActive="font-bold">Portfolio</a>
-      <a routerLink="/blog" routerLinkActive="font-bold">Blog</a>
-      <a routerLink="/contact" routerLinkActive="font-bold">Contacto</a>
-    </div>
   </nav>
 
   <!-- Links Mobile -->
@@ -69,26 +65,24 @@
     *ngIf="isMenuOpen && screenIsMobile"
     class="flex flex-col gap-4 px-6 py-4 bg-white/80 dark:bg-neutral-900/90 border-b border-gray-200 dark:border-gray-700 sm:hidden"
   >
-    <a routerLink="/" routerLinkActive="font-bold" (click)="isMenuOpen = false">Home</a>
-    <a routerLink="/about" routerLinkActive="font-bold" (click)="isMenuOpen = false">Sobre mí</a>
-    <a routerLink="/portfolio" routerLinkActive="font-bold" (click)="isMenuOpen = false"
-      >Portfolio</a
-    >
-    <a routerLink="/blog" routerLinkActive="font-bold" (click)="isMenuOpen = false">Blog</a>
-    <a routerLink="/contact" routerLinkActive="font-bold" (click)="isMenuOpen = false">Contacto</a>
+    <a routerLink="/" (click)="isMenuOpen = false">🏠 Home</a>
+    <a routerLink="/about" (click)="isMenuOpen = false">👤 Sobre mí</a>
+    <a routerLink="/portfolio" (click)="isMenuOpen = false">🛠 Portfolio</a>
+    <a routerLink="/blog" (click)="isMenuOpen = false">📝 Blog</a>
+    <a routerLink="/contact" (click)="isMenuOpen = false">💼 Contacto</a>
     <a
       href="/assets/FrancoGonzalez-CV-es.pdf"
       target="_blank"
       rel="noopener"
+      (click)="closeMenu()"
       class="inline-flex items-center gap-2 rounded-lg px-4 py-2 border border-neutral-300 bg-white/70 backdrop-blur-md text-neutral-800 hover:bg-white/90 hover:shadow-lg dark:bg-neutral-900/70 dark:text-neutral-200 dark:hover:bg-neutral-900/90 transition"
-      (click)="isMenuOpen = false"
     >
-      Ver CV
+      🚀 Descargar CV
     </a>
   </div>
 
   <!-- CONTENIDO -->
-  <main class="flex-1 bg-white dark:bg-neutral-950 text-black dark:text-white">
+  <main class="flex-1 text-black dark:text-white">
     <div class="max-w-6xl mx-auto px-6 py-16">
       <router-outlet></router-outlet>
     </div>
@@ -96,7 +90,7 @@
 
   <!-- FOOTER -->
   <footer
-    class="py-6 border-t border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md text-center text-sm text-gray-500 dark:text-gray-400"
+    class="py-6 border-t border-neutral-200 dark:border-neutral-700 backdrop-blur-md text-center text-sm text-gray-500 dark:text-gray-400"
   >
     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
       <p>© 2025 Franco Gonzalez. Todos los derechos reservados.</p>
@@ -105,19 +99,24 @@
           href="https://github.com/Franncogonza"
           target="_blank"
           rel="noopener"
-          class="hover:underline"
+          class="hover:underline hover:text-blue-600 dark:hover:text-blue-400"
         >
-          GitHub
+          👾 GitHub
         </a>
         <a
           href="https://linkedin.com/in/francogonzalezweb"
           target="_blank"
           rel="noopener"
-          class="hover:underline"
+          class="hover:underline hover:text-blue-600 dark:hover:text-blue-400"
         >
-          LinkedIn
+          💼 LinkedIn
         </a>
-        <a routerLink="/contact" class="hover:underline">Contacto</a>
+        <a
+          routerLink="/contact"
+          class="hover:underline hover:text-blue-600 dark:hover:text-blue-400"
+        >
+          📩 Contacto
+        </a>
       </div>
     </div>
   </footer>

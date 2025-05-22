@@ -1,15 +1,32 @@
 <section class="container flex flex-col-reverse lg:flex-row items-center gap-12 py-24">
   <!-- Texto -->
   <div class="flex-1 text-center lg:text-left">
-    <h1 class="heading-xl">Hola, soy Franco 👋</h1>
-    <p class="text-base mb-6">
-      <strong>Full-Stack Angular + Node.js + IA.</strong><br />
-      Apasionado por automatizar, escalar y crear valor real.<br />
-      Desarrollador frontend especializado en Angular, backend con Node.js y experto en IA aplicada.
+    <h1 class="text-5xl sm:text-6xl font-extrabold mb-6">
+      Hola, soy <span class="text-blue-600">Franco 👋</span>
+    </h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+      <strong class="text-neutral-900 dark:text-neutral-100"
+        >Full-Stack Angular + Node.js + IA.</strong
+      ><br />
+      Apasionado por <span class="text-blue-600">automatizar</span>,
+      <span class="text-blue-600">escalar</span> y
+      <span class="text-blue-600">crear valor real</span>.<br />
+      Desarrollador frontend especializado en <strong>Angular</strong>, backend con
+      <strong>Node.js</strong> y experto en <strong>IA aplicada</strong>.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-      <a routerLink="/portfolio" class="btn">Ver Portfolio</a>
-      <a routerLink="/contact" class="btn btn-secondary">Contactar</a>
+      <a
+        routerLink="/portfolio"
+        class="inline-flex items-center gap-2 rounded-xl px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition hover:scale-[1.03]"
+      >
+        🚀 Ver Portfolio
+      </a>
+      <a
+        routerLink="/contact"
+        class="inline-flex items-center gap-2 rounded-xl px-6 py-3 border border-neutral-300 bg-white/70 backdrop-blur-md text-neutral-900 dark:bg-neutral-900/70 dark:text-neutral-200 dark:border-neutral-600 hover:bg-white hover:shadow-md dark:hover:bg-neutral-800 transition hover:scale-[1.03]"
+      >
+        💼 Contactar
+      </a>
     </div>
   </div>
 
@@ -18,44 +35,51 @@
     <img
       src="/profile-franco.jpeg"
       alt="Foto de Franco"
-      class="w-56 h-56 rounded-full object-cover shadow-xl border-4 border-white dark:border-gray-700"
+      class="w-60 h-60 sm:w-72 sm:h-72 rounded-full object-cover shadow-2xl border-4 border-white dark:border-gray-700"
     />
   </div>
 </section>
 
 <section class="container py-24">
-  <h2 class="heading-lg text-center mb-12">Lo que hago 🚀</h2>
+  <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-12">
+    Lo que hago <span class="text-blue-600">🚀</span>
+  </h2>
+
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
     <!-- Card 1 -->
     <div
-      class="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md hover:scale-105 transition"
+      class="group bg-white/60 dark:bg-gray-900/60 backdrop-blur-md p-8 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-lg hover:scale-[1.03] hover:shadow-2xl transition"
     >
-      <h3 class="heading-md mb-2">Frontend Premium</h3>
-      <p class="text-base">
-        Aplicaciones frontend robustas, performantes y accesibles con Angular y arquitectura
-        escalable.
+      <h3 class="text-2xl font-bold mb-3 group-hover:text-blue-600 transition">
+        ⚛️ Frontend Premium
+      </h3>
+      <p class="text-base leading-relaxed">
+        Aplicaciones frontend robustas, ultraperformantes y accesibles con
+        <strong>Angular</strong> y arquitectura escalable.
       </p>
     </div>
 
     <!-- Card 2 -->
     <div
-      class="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md hover:scale-105 transition"
+      class="group bg-white/60 dark:bg-gray-900/60 backdrop-blur-md p-8 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-lg hover:scale-[1.03] hover:shadow-2xl transition"
     >
-      <h3 class="heading-md mb-2">Backend Eficiente</h3>
-      <p class="text-base">
-        APIs escalables y seguras con Node.js, NestJS o Express, integradas con bases de datos SQL y
-        NoSQL.
+      <h3 class="text-2xl font-bold mb-3 group-hover:text-blue-600 transition">
+        🖥️ Backend Eficiente
+      </h3>
+      <p class="text-base leading-relaxed">
+        APIs escalables y seguras con <strong>Node.js</strong> y <strong>NestJS</strong>, bases
+        SQL/NoSQL, autentificación y rendimiento extremo.
       </p>
     </div>
 
     <!-- Card 3 -->
     <div
-      class="bg-white/60 dark:bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md hover:scale-105 transition"
+      class="group bg-white/60 dark:bg-gray-900/60 backdrop-blur-md p-8 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-lg hover:scale-[1.03] hover:shadow-2xl transition"
     >
-      <h3 class="heading-md mb-2">IA Aplicada</h3>
-      <p class="text-base">
-        Automatización de procesos, generación de contenido, optimización con IA y chatbots
-        inteligentes.
+      <h3 class="text-2xl font-bold mb-3 group-hover:text-blue-600 transition">🤖 IA Aplicada</h3>
+      <p class="text-base leading-relaxed">
+        Automatización de procesos, generación de contenido, optimización con IA, chatbots
+        inteligentes y soluciones AI-first.
       </p>
     </div>
   </div>

@@ -2,34 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- BASE ---------- */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
+    background-image:
+      radial-gradient(at 30% 30%, rgba(255, 255, 255, 0.3) 0px, transparent 50%),
+      radial-gradient(at 70% 70%, rgba(200, 200, 200, 0.15) 0px, transparent 50%);
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(at 30% 30%, rgba(255, 255, 255, 0.02) 0px, transparent 50%),
+      radial-gradient(at 70% 70%, rgba(255, 255, 255, 0.01) 0px, transparent 50%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  p {
+    @apply leading-relaxed text-neutral-700 dark:text-neutral-300;
+  }
+
+  a {
+    @apply underline underline-offset-2 decoration-neutral-300 hover:decoration-blue-500 dark:decoration-neutral-600 dark:hover:decoration-blue-400;
+  }
+}
+
+/* ---------- UTILITIES ---------- */
+@layer utilities {
+  .gradient-bg {
+    @apply bg-gradient-to-br from-white via-neutral-100 to-neutral-300 dark:from-[#0f172a] dark:via-[#1e293b] dark:to-[#0f172a];
+  }
+
+  .glass {
+    @apply backdrop-blur-md bg-white/70 dark:bg-neutral-900/70 border border-neutral-200 dark:border-neutral-700;
+  }
+}
+
+/* ---------- COMPONENTS PREMIUM ---------- */
 @layer components {
   .container {
-    @apply w-full max-w-6xl mx-auto px-4;
+    @apply max-w-7xl mx-auto px-6;
   }
 
   .section {
-    @apply py-16 min-h-[80vh];
+    @apply py-24;
   }
 
   .heading-xl {
-    @apply text-5xl font-bold mb-6;
+    @apply text-5xl sm:text-6xl font-bold mb-8;
   }
 
   .btn {
-    @apply inline-block px-5 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition;
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium 
+      bg-gradient-to-r from-blue-600 to-purple-600 text-white
+      hover:from-blue-700 hover:to-purple-700
+      active:scale-95
+      transition-all;
   }
 
   .btn-secondary {
-    @apply inline-block px-5 py-2 rounded-md border border-gray-300 
-    bg-white text-gray-700 hover:bg-gray-100
-    dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 transition;
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium
+      border border-neutral-300 dark:border-neutral-700
+      bg-white/70 dark:bg-neutral-800/80
+      text-neutral-900 dark:text-neutral-100
+      hover:bg-white hover:shadow-md dark:hover:bg-neutral-700
+      active:scale-95
+      transition-all;
   }
 
-  .text-muted {
-    @apply text-gray-500 dark:text-gray-400;
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg
+      text-neutral-700 dark:text-neutral-200
+      hover:bg-neutral-100 dark:hover:bg-neutral-800
+      active:scale-95
+      transition-all;
   }
 
   .badge {
-    @apply bg-blue-600 text-white text-xs px-3 py-1 rounded-full;
+    @apply bg-blue-600 text-white text-xs px-3 py-1 rounded-full uppercase tracking-wide;
   }
+
+  .card {
+    @apply rounded-2xl p-6 shadow-xl border border-neutral-200 dark:border-neutral-800 
+      bg-white dark:bg-neutral-900 transition;
+  }
+
+  .card-hover {
+    @apply hover:scale-[1.02] hover:shadow-2xl transition-all;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/60 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl;
+  }
+}
+
+body {
+  background-color: #f9fafb;
+  background-image:
+    radial-gradient(at 20% 20%, rgba(255, 255, 255, 0.6) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(200, 200, 200, 0.3) 0px, transparent 50%);
+}
+
+.dark body {
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(at 30% 30%, rgba(255, 255, 255, 0.03) 0px, transparent 50%),
+    radial-gradient(at 70% 70%, rgba(255, 255, 255, 0.02) 0px, transparent 50%);
 }
