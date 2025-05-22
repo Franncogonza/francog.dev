@@ -15,6 +15,12 @@ export const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'blog', component: BlogComponent },
+      {
+        path: 'blog/:slug',
+        loadComponent: () =>
+          import('./pages/blog-detail/blog-detail.component').then(c => c.BlogDetailComponent),
+      },
+
       { path: 'contact', component: ContactComponent },
     ],
   },

@@ -1,0 +1,23 @@
+<section class="container py-24">
+  <div *ngIf="post(); else notFound">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-6">{{ post()?.title }}</h1>
+    <p class="text-neutral-600 dark:text-neutral-400 mb-12">{{ post()?.description }}</p>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p>{{ post()?.content }}</p>
+    </div>
+
+    <div class="mt-12">
+      <a routerLink="/blog" class="text-blue-600 dark:text-blue-400 hover:underline">
+        ← Volver al Blog
+      </a>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <h2 class="text-3xl font-bold mb-4">Post no encontrado 😢</h2>
+    <a routerLink="/blog" class="text-blue-600 dark:text-blue-400 hover:underline">
+      ← Volver al Blog
+    </a>
+  </ng-template>
+</section>

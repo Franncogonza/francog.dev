@@ -6,70 +6,17 @@
     </p>
 
     <div class="grid gap-8 md:grid-cols-2">
-      <!-- Post 1 -->
       <div
+        *ngFor="let post of posts"
         class="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-1 transition bg-neutral-50 dark:bg-neutral-800"
       >
-        <h3 class="text-2xl font-semibold mb-3">
-          🚀 Cómo construí este sitio con Angular SSR + Tailwind
-        </h3>
+        <h3 class="text-2xl font-semibold mb-3">{{ post.emoji }} {{ post.title }}</h3>
         <p class="text-neutral-600 dark:text-neutral-400 mb-4">
-          Te cuento el paso a paso técnico, los desafíos y aprendizajes para llevar Angular a
-          producción con Server Side Rendering en Vercel.
+          {{ post.description }}
         </p>
-        <a href="#" class="text-blue-600 dark:text-blue-400 font-medium">Leer más →</a>
-      </div>
-
-      <!-- Post 2 -->
-      <div
-        class="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-1 transition bg-neutral-50 dark:bg-neutral-800"
-      >
-        <h3 class="text-2xl font-semibold mb-3">🧠 Cómo pienso mi carrera como dev en 2025</h3>
-        <p class="text-neutral-600 dark:text-neutral-400 mb-4">
-          Mi estrategia para mantenerme competitivo: full-stack, IA, sistemas propios y crecimiento
-          personal constante.
-        </p>
-        <a href="#" class="text-blue-600 dark:text-blue-400 font-medium">Leer más →</a>
-      </div>
-
-      <!-- Post 3 -->
-      <div
-        class="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-1 transition bg-neutral-50 dark:bg-neutral-800"
-      >
-        <h3 class="text-2xl font-semibold mb-3">
-          ⚙️ Automatización: cómo ahorré 30h/mes con IA + Slack
-        </h3>
-        <p class="text-neutral-600 dark:text-neutral-400 mb-4">
-          Cómo diseñé bots para Slack que automatizan tareas repetitivas y mejoran mi productividad
-          en proyectos reales.
-        </p>
-        <a href="#" class="text-blue-600 dark:text-blue-400 font-medium">Leer más →</a>
-      </div>
-
-      <!-- Post 4 -->
-      <div
-        class="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-1 transition bg-neutral-50 dark:bg-neutral-800"
-      >
-        <h3 class="text-2xl font-semibold mb-3">🌐 Cómo escalar APIs con Node.js + AWS</h3>
-        <p class="text-neutral-600 dark:text-neutral-400 mb-4">
-          Claves para diseñar APIs robustas y escalables usando Node.js, NestJS, bases SQL/NoSQL y
-          servicios AWS.
-        </p>
-        <a href="#" class="text-blue-600 dark:text-blue-400 font-medium">Leer más →</a>
-      </div>
-
-      <!-- Post 5 -->
-      <div
-        class="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-1 transition bg-neutral-50 dark:bg-neutral-800 md:col-span-2"
-      >
-        <h3 class="text-2xl font-semibold mb-3">
-          🚀 De dev a arquitecto: mi roadmap Full-Stack + IA
-        </h3>
-        <p class="text-neutral-600 dark:text-neutral-400 mb-4">
-          El plan concreto que estoy ejecutando para evolucionar a Arquitecto Full-Stack con IA
-          aplicada, DevOps y sistemas propios.
-        </p>
-        <a href="#" class="text-blue-600 dark:text-blue-400 font-medium">Leer más →</a>
+        <a [routerLink]="['/blog', post.slug]" class="text-blue-600 dark:text-blue-400 font-medium"
+          >Leer más →</a
+        >
       </div>
     </div>
   </div>
