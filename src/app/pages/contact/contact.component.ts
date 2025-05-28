@@ -73,7 +73,7 @@ export class ContactComponent {
     formData.append('message', this.message());
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/gonzalez.francodavid@hotmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/gonzalez.francodavid77@gmail.com', {
         method: 'POST',
         body: formData,
         headers: { Accept: 'application/json' },
