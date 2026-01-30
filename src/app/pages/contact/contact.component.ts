@@ -98,7 +98,12 @@ export class ContactComponent implements OnInit {
         this.formStatus.set('success');
         this.formError.set(null);
         this.logger.log('Formulario enviado exitosamente', 'ContactComponent');
-        this.resetForm();
+        setTimeout(() => {
+          this.resetForm();
+          this.formStatus.set('idle');
+        }, 2500);
+
+        return;
       } else if (res.status === 429) {
         this.handleError('Demasiadas solicitudes. Intenta de nuevo en unos minutos.', res);
       } else if (res.status >= 500) {
