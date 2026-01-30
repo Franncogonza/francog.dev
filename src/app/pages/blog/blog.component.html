@@ -5,19 +5,74 @@
       Reflexiones, aprendizajes y cosas que me apasionan sobre desarrollo, tecnología y vida.
     </p>
 
-    <div class="grid gap-8 md:grid-cols-2">
-      <div
+    <!-- Estado: Cargando -->
+    <div *ngIf="isLoading" class="py-12">
+      <div class="inline-block">
+        <div class="flex flex-col items-center gap-4">
+          <div class="inline-block animate-spin text-4xl">⏳</div>
+          <p class="text-neutral-600 dark:text-neutral-400 font-medium">Cargando posts...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estado: Error -->
+    <div
+      *ngIf="error && !isLoading"
+      class="py-12 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-lg p-6"
+    >
+      <div class="flex flex-col items-center gap-4">
+        <p class="text-2xl">⚠️</p>
+        <p class="text-red-700 dark:text-red-200 font-medium">{{ error }}</p>
+        <button
+          (click)="loadPosts()"
+          class="mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition"
+        >
+          🔄 Reintentar
+        </button>
+        <p class="text-sm text-red-600 dark:text-red-300 mt-2">
+          (Mostrando datos en caché si están disponibles)
+        </p>
+      </div>
+    </div>
+
+    <!-- Estado: Sin posts -->
+    <div *ngIf="!isLoading && !error && posts.length === 0" class="py-12">
+      <p class="text-neutral-600 dark:text-neutral-400 text-lg">
+        No hay posts disponibles en este momento.
+      </p>
+    </div>
+
+    <!-- Posts cargados exitosamente -->
+    <div *ngIf="!isLoading && posts.length > 0" class="grid gap-8 md:grid-cols-2">
+      <article
         *ngFor="let post of posts"
         class="border rounded-3xl p-6 hover:shadow-2xl hover:-translate-y-1 transition bg-neutral-50 dark:bg-neutral-800"
       >
-        <h3 class="text-2xl font-semibold mb-3">{{ post.emoji }} {{ post.title }}</h3>
+        <h3 class="text-2xl font-semibold mb-3">
+          <span aria-hidden="true">{{ post.emoji }}</span> {{ post.title }}
+        </h3>
         <p class="text-neutral-600 dark:text-neutral-400 mb-4">
           {{ post.description }}
         </p>
-        <a [routerLink]="['/blog', post.slug]" class="text-blue-600 dark:text-blue-400 font-medium"
-          >Leer más →</a
+        <a
+          [routerLink]="['/blog', post.slug]"
+          [attr.aria-label]="'Leer artículo: ' + post.title"
+          class="text-blue-600 dark:text-blue-400 font-medium hover:underline inline-flex items-center gap-1"
         >
-      </div>
+          Leer más
+          <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    </div>
+
+    <!-- Indicador de estado al pie -->
+    <div
+      *ngIf="!isLoading && posts.length > 0"
+      class="mt-8 text-sm text-neutral-500 dark:text-neutral-400"
+    >
+      {{ posts.length }} post{{ posts.length !== 1 ? 's' : '' }} cargado{{
+        posts.length !== 1 ? 's' : ''
+      }}
     </div>
   </div>
 </section>
