@@ -275,22 +275,7 @@
       bg-clip-text text-transparent;
   }
 
-  /* Animations */
-  .animate-fade-in {
-    @apply animate-fade-in;
-  }
-
-  .animate-slide-up {
-    @apply animate-slide-up;
-  }
-
-  .animate-slide-down {
-    @apply animate-slide-down;
-  }
-
-  .animate-shimmer {
-    @apply animate-shimmer;
-  }
+  /* Animations - No need for custom classes, Tailwind provides these natively */
 
   /* Text utilities */
   .text-accent {
