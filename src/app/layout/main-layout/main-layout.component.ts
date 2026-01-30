@@ -16,6 +16,7 @@ export class MainLayoutComponent {
   isDarkMode = false;
 
   private readonly platform = inject(PlatformService);
+  currentYear: number = new Date().getFullYear();
 
   ngOnInit() {
     if (this.platform.isBrowser()) {
