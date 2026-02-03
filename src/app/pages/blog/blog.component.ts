@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Blog, BlogService } from '../../services/blog.service';
 import { SeoService } from '../../services/seo.service';
 
@@ -11,50 +11,44 @@ import { SeoService } from '../../services/seo.service';
   imports: [CommonModule, RouterModule],
   templateUrl: './blog.component.html',
 })
-export class BlogComponent implements OnInit, OnDestroy {
-  posts: Blog[] = [];
-  isLoading = false;
-  error: string | null = null;
-  private destroy$ = new Subject<void>();
+export class BlogComponent implements OnInit {
+  private readonly blogService = inject(BlogService);
+  private readonly seo = inject(SeoService);
 
-  constructor(
-    private readonly blogService: BlogService,
-    private readonly seo: SeoService,
-    @Inject(PLATFORM_ID) private readonly platformId: Object
-  ) {}
+  // Patrón reactivo moderno: Observable → Signal
+  private postsSignal = toSignal(this.blogService.posts$, { initialValue: [] as Blog[] });
+  
+  // Signals para estados derivados
+  posts = computed(() => this.postsSignal());
+  isLoading = signal(false);
+  error = signal<string | null>(null);
+
+  constructor() {
+    // Disparar carga en background (sin subscribe manual)
+    this.blogService.getAllWithCache().subscribe({
+      next: () => this.isLoading.set(false),
+      error: () => {
+        this.error.set('No se pudieron cargar los posts.');
+        this.isLoading.set(false);
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.seo.setBlogPage();
-    this.loadPosts();
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.isLoading.set(true);
   }
 
   loadPosts(): void {
-    this.isLoading = true;
-
-    // Suscribirse al stream público para recibir inmediatamente los mocks
-    this.blogService.posts$.pipe(takeUntil(this.destroy$)).subscribe({
-      next: data => {
-        this.posts = data;
-        this.isLoading = false;
-      },
+    this.isLoading.set(true);
+    this.error.set(null);
+    
+    this.blogService.getAllWithCache().subscribe({
+      next: () => this.isLoading.set(false),
       error: () => {
-        this.error = 'No se pudieron cargar los posts.';
-        this.isLoading = false;
+        this.error.set('No se pudieron cargar los posts.');
+        this.isLoading.set(false);
       },
     });
-
-    // Disparar la petición (o usar caché) en segundo plano
-    this.blogService
-      .getAllWithCache()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => {},
-        error: () => {},
-      });
   }
 }
