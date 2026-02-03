@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Blog, BlogService } from '../../services/blog.service';
 import { SeoService } from '../../services/seo.service';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-blog',
@@ -14,6 +15,7 @@ import { SeoService } from '../../services/seo.service';
 export class BlogComponent implements OnInit {
   private readonly blogService = inject(BlogService);
   private readonly seo = inject(SeoService);
+  readonly i18n = inject(I18nService);
 
   // Patrón reactivo moderno: Observable → Signal
   private postsSignal = toSignal(this.blogService.posts$, { initialValue: [] as Blog[] });

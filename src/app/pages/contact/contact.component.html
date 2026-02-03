@@ -18,12 +18,11 @@
       <h1
         class="mt-2 text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50"
       >
-        Hablemos.
+        {{ i18n.translations().contact.title }}
       </h1>
 
       <p class="mt-4 text-base md:text-lg text-neutral-600 dark:text-neutral-300">
-        Si tenés una propuesta, idea o querés colaborar, dejame un mensaje. Respondo normalmente en
-        <span class="font-semibold">24–48h</span>.
+        {{ i18n.translations().contact.subtitle }}
       </p>
     </header>
 
@@ -59,11 +58,8 @@
         <div class="grid gap-5">
           <!-- Nombre -->
           <div>
-            <label
-              class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
-              for="name"
-            >
-              Nombre
+            <label for="name" class="block text-sm font-medium text-neutral-700 dark:text-neutral-200">
+              {{ i18n.translations().contact.name }}
             </label>
 
             <input
@@ -77,7 +73,7 @@
               [class.border-red-500]="nameError()"
               [attr.aria-invalid]="!!nameError()"
               [attr.aria-describedby]="nameError() ? 'name-error' : null"
-              placeholder="Tu nombre"
+              [placeholder]="i18n.translations().contact.name"
             />
 
             <p
@@ -91,11 +87,8 @@
 
           <!-- Email -->
           <div>
-            <label
-              class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
-              for="email"
-            >
-              Email
+            <label for="email" class="block text-sm font-medium text-neutral-700 dark:text-neutral-200">
+              {{ i18n.translations().contact.email }}
             </label>
 
             <input
@@ -109,7 +102,7 @@
               [class.border-red-500]="emailError()"
               [attr.aria-invalid]="!!emailError()"
               [attr.aria-describedby]="emailError() ? 'email-error' : null"
-              placeholder="tu@email.com"
+              [placeholder]="i18n.translations().contact.email"
             />
 
             <p
@@ -123,11 +116,8 @@
 
           <!-- Mensaje -->
           <div>
-            <label
-              class="mb-2 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
-              for="message"
-            >
-              Mensaje
+            <label for="message" class="block text-sm font-medium text-neutral-700 dark:text-neutral-200">
+              {{ i18n.translations().contact.message }}
             </label>
 
             <textarea
@@ -140,7 +130,7 @@
               [class.border-red-500]="messageError()"
               [attr.aria-invalid]="!!messageError()"
               [attr.aria-describedby]="messageError() ? 'message-error' : null"
-              placeholder="Contame en qué puedo ayudarte…"
+              [placeholder]="i18n.translations().contact.message"
             ></textarea>
 
             <div class="mt-2 flex items-center justify-between">
@@ -165,10 +155,10 @@
             >
               <span *ngIf="formStatus() === 'sending'" class="inline-flex items-center gap-2">
                 <span class="inline-block animate-spin">⏳</span>
-                Enviando…
+                {{ i18n.translations().contact.sending }}
               </span>
               <span *ngIf="formStatus() !== 'sending'">
-                {{ formStatus() === 'success' ? '✅ Enviado' : 'Enviar mensaje' }}
+                {{ formStatus() === 'success' ? i18n.translations().contact.sent : i18n.translations().contact.send }}
               </span>
             </button>
 
@@ -178,7 +168,7 @@
               (click)="onSubmit()"
               class="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-neutral-200 px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-50 dark:border-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-900/40"
             >
-              🔄 Reintentar
+              {{ i18n.translations().contact.retry }}
             </button>
 
             <p class="text-xs text-neutral-500 dark:text-neutral-400 text-center">

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SeoService } from '../../services/seo.service';
+import { I18nService } from '../../services/i18n.service';
 import { PORTFOLIO_PROJECTS } from '../../../mocks/portfolio.data';
 
 @Component({
@@ -12,6 +13,7 @@ import { PORTFOLIO_PROJECTS } from '../../../mocks/portfolio.data';
   styleUrl: './portfolio.component.scss',
 })
 export class PortfolioComponent implements OnInit {
+  readonly i18n = inject(I18nService);
   projects = PORTFOLIO_PROJECTS;
 
   constructor(private readonly seo: SeoService) {}

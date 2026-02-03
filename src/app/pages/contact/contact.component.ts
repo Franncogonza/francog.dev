@@ -1,16 +1,21 @@
-import { Component, computed, signal, OnInit } from '@angular/core';
+import { Component, computed, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { LoggerService } from '../../services/logger.service';
 import { SeoService } from '../../services/seo.service';
 import { ContactService } from '../../services/contact.service';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
+  readonly i18n = inject(I18nService);
+
   // Inputs
   name = signal('');
   email = signal('');

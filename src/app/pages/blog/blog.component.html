@@ -3,11 +3,10 @@
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto mb-12">
       <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
-        Blog
+        {{ i18n.translations().blog.title }}
       </h2>
       <p class="mt-4 text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed">
-        Notas técnicas sobre performance, arquitectura frontend, producción y automatización con IA
-        (sin hype).
+        {{ i18n.translations().blog.subtitle }}
       </p>
     </div>
 
@@ -19,7 +18,7 @@
           class="h-10 w-10 rounded-full border-2 border-neutral-200 border-t-neutral-900 dark:border-neutral-700 dark:border-t-white animate-spin"
           aria-hidden="true"
         ></div>
-        <p class="text-neutral-600 dark:text-neutral-400 font-medium">Cargando artículos…</p>
+        <p class="text-neutral-600 dark:text-neutral-400 font-medium">{{ i18n.translations().blog.loading }}</p>
       </div>
     </div>
     }
@@ -32,7 +31,7 @@
     >
       <div class="flex flex-col items-center text-center gap-4 max-w-2xl mx-auto">
         <p class="text-sm font-semibold text-red-700 dark:text-red-200">
-          No se pudieron cargar los artículos.
+          {{ i18n.translations().blog.error }}
         </p>
 
         <p class="text-red-700 dark:text-red-200">
@@ -44,7 +43,7 @@
             (click)="loadPosts()"
             class="inline-flex h-11 items-center justify-center rounded-xl bg-red-600 px-6 text-white font-medium transition hover:bg-red-700"
           >
-            Reintentar
+            {{ i18n.translations().blog.retry }}
           </button>
           <span class="text-sm text-red-600 dark:text-red-300 self-center">
             Mostrando caché si hay datos disponibles.
@@ -59,7 +58,7 @@
     <div class="py-16">
       <div class="text-center max-w-2xl mx-auto">
         <p class="text-neutral-600 dark:text-neutral-400 text-lg">
-          Todavía no hay artículos publicados.
+          {{ i18n.translations().blog.noArticles }}
         </p>
         <p class="mt-2 text-neutral-500 dark:text-neutral-500">
           Publicaré notas técnicas a medida que avance con proyectos y aprendizajes en producción.
@@ -104,7 +103,7 @@
             [attr.aria-label]="'Leer artículo: ' + post.title"
             class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium"
           >
-            Leer artículo
+            {{ i18n.translations().blog.readArticle }}
             <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
           </a>
         </div>
@@ -118,9 +117,7 @@
     <div
       class="mt-10 text-sm text-neutral-500 dark:text-neutral-500 text-center"
     >
-      {{ posts().length }} artículo{{ posts().length !== 1 ? 's' : '' }} cargado{{
-        posts().length !== 1 ? 's' : ''
-      }}.
+      {{ posts().length }} {{ i18n.translations().blog.articlesLoaded }}
     </div>
     }
   </div>

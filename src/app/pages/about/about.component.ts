@@ -1,6 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SeoService } from '../../services/seo.service';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-about',
@@ -10,6 +11,8 @@ import { SeoService } from '../../services/seo.service';
   styleUrl: './about.component.scss',
 })
 export class AboutComponent implements OnInit {
+  readonly i18n = inject(I18nService);
+  
   constructor(private readonly seo: SeoService) {}
 
   ngOnInit(): void {
