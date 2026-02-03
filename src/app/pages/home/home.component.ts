@@ -14,6 +14,6 @@ export class HomeComponent implements OnInit {
   constructor(private readonly seo: SeoService) {}
 
   ngOnInit(): void {
-    this.seo.setHomePage();
+    this.seo.setHomePageWithSchema();
   }
 }

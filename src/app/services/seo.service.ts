@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 export interface SeoConfig {
   title: string;
@@ -17,7 +18,8 @@ export class SeoService {
 
   constructor(
     private title: Title,
-    private meta: Meta
+    private meta: Meta,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   setPageTitle(pageTitle: string): void {
@@ -159,5 +161,89 @@ export class SeoService {
       type: 'website',
       url: `${this.baseUrl}/portfolio`,
     });
+  }
+
+  /**
+   * Inyecta un script JSON-LD en el <head> para datos estructurados (Schema.org)
+   * Esto mejora los Rich Snippets en resultados de búsqueda de Google
+   */
+  private injectJsonLd(schema: Record<string, any>): void {
+    // Remover script JSON-LD anterior si existe
+    const existingScript = this.document.querySelector('script[type="application/ld+json"]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    // Crear nuevo script JSON-LD
+    const script = this.document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schema);
+    this.document.head.appendChild(script);
+  }
+
+  /**
+   * Schema.org para artículos de blog
+   * Mejora Rich Snippets con fecha, autor, imagen
+   */
+  setBlogPostWithSchema(title: string, description: string, slug: string, date?: string, image?: string): void {
+    // Meta tags normales
+    this.setBlogPost(title, description, slug, image);
+
+    // JSON-LD para Rich Snippets
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: description,
+      url: `${this.baseUrl}/blog/${slug}`,
+      datePublished: date || new Date().toISOString(),
+      dateModified: date || new Date().toISOString(),
+      author: {
+        '@type': 'Person',
+        name: 'Franco David Gonzalez',
+        url: this.baseUrl,
+        jobTitle: 'Full Stack Developer',
+        sameAs: [
+          'https://github.com/Franncogonza',
+          'https://linkedin.com/in/franco-david-gonzalez',
+        ],
+      },
+      publisher: {
+        '@type': 'Person',
+        name: 'Franco David Gonzalez',
+      },
+      ...(image && { image: image }),
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${this.baseUrl}/blog/${slug}`,
+      },
+    };
+
+    this.injectJsonLd(schema);
+  }
+
+  /**
+   * Schema.org para la página principal
+   * Mejora Rich Snippets con información de persona/profesional
+   */
+  setHomePageWithSchema(): void {
+    this.setHomePage();
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Franco David Gonzalez',
+      url: this.baseUrl,
+      jobTitle: 'Full Stack Developer',
+      description:
+        'Desarrollador Full Stack especializado en Angular, Node.js y arquitectura de sistemas. Construyo productos digitales escalables.',
+      knowsAbout: ['Angular', 'Node.js', 'TypeScript', 'JavaScript', 'Full Stack Development', 'Software Architecture'],
+      sameAs: [
+        'https://github.com/Franncogonza',
+        'https://linkedin.com/in/franco-david-gonzalez',
+      ],
+    };
+
+    this.injectJsonLd(schema);
   }
 }
