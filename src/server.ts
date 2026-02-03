@@ -1,6 +1,7 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine, isMainModule } from '@angular/ssr/node';
 import express from 'express';
+import compression from 'compression';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import bootstrap from './main.server';
@@ -11,6 +12,23 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 
 const app = express();
 const commonEngine = new CommonEngine();
+
+/**
+ * Compression middleware - Reduce transferencia en ~70%
+ * Soporta Gzip y Brotli automáticamente
+ */
+app.use(compression({
+  level: 6, // Balance entre velocidad y compresión (0-9)
+  threshold: 1024, // Solo comprimir respuestas > 1KB
+  filter: (req, res) => {
+    // No comprimir si el cliente no lo soporta
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    // Usar el filtro por defecto de compression
+    return compression.filter(req, res);
+  },
+}));
 
 /**
  * Example Express Rest API endpoints can be defined here.
