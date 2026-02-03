@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export interface LogError {
   message: string;
   context?: string;
-  error?: any;
+  error?: unknown;
   timestamp?: Date;
 }
 
@@ -21,7 +21,7 @@ export class LoggerService {
     console.warn(`[${context || 'APP'}] ${message}`);
   }
 
-  error(message: string, error?: any, context?: string): void {
+  error(message: string, error?: unknown, context?: string): void {
     const errorData: LogError = {
       message,
       context: context || 'APP',
@@ -61,26 +61,39 @@ export class LoggerService {
     }
   }
 
-  getSpecificErrorMessage(error: any): string {
+  getSpecificErrorMessage(error: unknown): string {
     if (!error) return 'Ocurrió un error desconocido';
 
+    // Type guard para verificar si error tiene propiedad status
+    const hasStatus = (err: unknown): err is { status: number } => {
+      return typeof err === 'object' && err !== null && 'status' in err;
+    };
+
+    // Type guard para verificar si error tiene propiedad message
+    const hasMessage = (err: unknown): err is { message: string } => {
+      return typeof err === 'object' && err !== null && 'message' in err;
+    };
+
     // Mensajes específicos según tipo de error
-    if (error.status === 0) {
-      return 'No hay conexión a internet. Verifica tu conexión.';
+    if (hasStatus(error)) {
+      if (error.status === 0) {
+        return 'No hay conexión a internet. Verifica tu conexión.';
+      }
+      if (error.status === 408 || error.status === 504) {
+        return 'La solicitud tardó demasiado. Intenta de nuevo.';
+      }
+      if (error.status === 429) {
+        return 'Demasiadas solicitudes. Por favor, espera un momento.';
+      }
+      if (error.status >= 500) {
+        return 'Error en el servidor. Intenta más tarde.';
+      }
+      if (error.status >= 400) {
+        return 'Error en la solicitud. Verifica los datos.';
+      }
     }
-    if (error.status === 408 || error.status === 504) {
-      return 'La solicitud tardó demasiado. Intenta de nuevo.';
-    }
-    if (error.status === 429) {
-      return 'Demasiadas solicitudes. Por favor, espera un momento.';
-    }
-    if (error.status >= 500) {
-      return 'Error en el servidor. Intenta más tarde.';
-    }
-    if (error.status >= 400) {
-      return 'Error en la solicitud. Verifica los datos.';
-    }
-    if (error.message) {
+
+    if (hasMessage(error)) {
       return error.message;
     }
 

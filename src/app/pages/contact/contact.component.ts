@@ -111,10 +111,14 @@ export class ContactComponent implements OnInit {
       } else {
         this.handleError('Error al enviar el formulario. Verifica los datos.', res);
       }
-    } catch (error: any) {
-      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+    } catch (error: unknown) {
+      const isTypeError = (err: unknown): err is TypeError => err instanceof TypeError;
+      const hasMessage = (err: unknown): err is { message: string } => 
+        typeof err === 'object' && err !== null && 'message' in err;
+      
+      if (isTypeError(error) && error.message.includes('Failed to fetch')) {
         this.handleError('No hay conexión a internet. Verifica tu conexión.', error);
-      } else {
+      } else if (hasMessage(error)) {
         this.handleError('Error de red. Intenta de nuevo.', error);
       }
     } finally {
@@ -127,7 +131,7 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  private handleError(message: string, error: any): void {
+  private handleError(message: string, error: unknown): void {
     this.formStatus.set('error');
     this.formError.set(message);
     this.logger.error('Error al enviar formulario de contacto', error, 'ContactComponent');
