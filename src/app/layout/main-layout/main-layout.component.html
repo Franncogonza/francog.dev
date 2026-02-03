@@ -71,34 +71,48 @@
       </a>
 
       <!-- Language Selector -->
-      <div class="relative">
+      <div class="relative lang-selector">
         <button
           (click)="isLangMenuOpen = !isLangMenuOpen"
-          class="inline-flex items-center justify-center gap-2 px-3 h-10 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200 focus-visible:ring-2 ring-offset-2 dark:ring-offset-neutral-950"
+          class="inline-flex items-center justify-center gap-2 px-3 h-10 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:border-primary-400 dark:hover:border-primary-600 transition-all duration-200 focus-visible:ring-2 ring-offset-2 dark:ring-offset-neutral-950 ring-primary-500"
+          [class.bg-neutral-100]="isLangMenuOpen"
+          [class.dark:bg-neutral-800]="isLangMenuOpen"
+          [class.border-primary-400]="isLangMenuOpen"
+          [class.dark:border-primary-600]="isLangMenuOpen"
           aria-label="Select language"
           [attr.aria-expanded]="isLangMenuOpen"
         >
-          <span class="text-lg">{{ currentLanguage?.flag }}</span>
+          <span class="text-lg transition-transform duration-200" [class.scale-110]="isLangMenuOpen">{{ currentLanguage?.flag }}</span>
           <span class="hidden sm:inline text-sm font-medium text-neutral-700 dark:text-neutral-200">{{ currentLanguage?.code?.toUpperCase() }}</span>
+          <svg 
+            class="w-4 h-4 text-neutral-500 dark:text-neutral-400 transition-transform duration-200"
+            [class.rotate-180]="isLangMenuOpen"
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
         </button>
 
-        <!-- Dropdown -->
+        <!-- Dropdown con animación -->
         <div
           *ngIf="isLangMenuOpen"
-          class="absolute right-0 mt-2 w-48 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-lg z-50"
+          class="absolute right-0 mt-2 w-52 rounded-xl border-2 border-neutral-200 dark:border-neutral-700 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl shadow-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
         >
-          <div class="py-1">
+          <div class="py-2">
             <button
-              *ngFor="let lang of languages"
+              *ngFor="let lang of languages; let i = index"
               (click)="changeLanguage(lang.code)"
-              class="w-full flex items-center gap-3 px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-              [class.bg-neutral-100]="lang.code === i18n.language"
-              [class.dark:bg-neutral-800]="lang.code === i18n.language"
+              class="w-full flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-150 group"
+              [class.bg-primary-50]="lang.code === i18n.language"
+              [class.dark:bg-primary-900/20]="lang.code === i18n.language"
               [class.font-semibold]="lang.code === i18n.language"
+              [style.animation-delay]="i * 50 + 'ms'"
             >
-              <span class="text-lg">{{ lang.flag }}</span>
-              <span>{{ lang.name }}</span>
-              <span *ngIf="lang.code === i18n.language" class="ml-auto text-primary-600 dark:text-primary-400">✓</span>
+              <span class="text-xl group-hover:scale-110 transition-transform duration-200">{{ lang.flag }}</span>
+              <span class="flex-1 text-left">{{ lang.name }}</span>
+              <span *ngIf="lang.code === i18n.language" class="text-primary-600 dark:text-primary-400 font-bold animate-in zoom-in duration-200">✓</span>
             </button>
           </div>
         </div>

@@ -43,6 +43,16 @@ export class MainLayoutComponent {
     }
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const langButton = target.closest('.lang-selector');
+    
+    if (!langButton && this.isLangMenuOpen) {
+      this.isLangMenuOpen = false;
+    }
+  }
+
   toggleDarkMode() {
     if (this.platform.isBrowser()) {
       this.isDarkMode = !this.isDarkMode;
