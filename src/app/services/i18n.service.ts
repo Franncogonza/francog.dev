@@ -1,4 +1,4 @@
-import { Injectable, signal, PLATFORM_ID, inject } from '@angular/core';
+import { Injectable, signal, computed, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 export type Language = 'es' | 'en' | 'pt';
@@ -304,9 +304,8 @@ export class I18nService {
     return this.currentLanguage();
   }
 
-  get translations(): Translation {
-    return translations[this.currentLanguage()];
-  }
+  // Computed signal para que sea reactivo
+  translations = computed(() => translations[this.currentLanguage()]);
 
   setLanguage(lang: Language): void {
     this.currentLanguage.set(lang);
