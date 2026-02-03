@@ -22,22 +22,16 @@
       <h1
         class="text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white md:text-6xl lg:leading-tight"
       >
-        Hola, soy
+        {{ i18n.translations().home.hero.greeting }}
         <span class="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
-          >Franco</span
+          >{{ i18n.translations().home.hero.title }}</span
         >
       </h1>
 
       <p
         class="mt-6 text-lg leading-relaxed text-neutral-600 dark:text-neutral-300 md:text-xl md:leading-relaxed max-w-2xl lg:max-w-3xl text-pretty"
       >
-        <strong>Tech Lead & Angular Developer.</strong> Más de 6 años construyendo productos reales.
-        Actualmente trabajo en el
-        <strong class="text-neutral-900 dark:text-white">motor de reservas de RIU Hotels</strong>,
-        en entornos de alto tráfico y producción crítica.
-        <br class="hidden md:block" />
-        Foco en estabilidad, performance, calidad de código y arquitectura frontend mantenible en
-        productos de largo plazo.
+        {{ i18n.translations().home.hero.subtitle }}
       </p>
 
       <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
@@ -45,13 +39,13 @@
           routerLink="/portfolio"
           class="inline-flex h-12 items-center justify-center rounded-xl bg-neutral-900 px-8 text-base font-medium text-white shadow-lg shadow-neutral-500/20 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-neutral-500/40 dark:bg-white dark:text-neutral-900 dark:shadow-none"
         >
-          Ver portfolio
+          {{ i18n.translations().home.hero.cta }}
         </a>
         <a
           routerLink="/contact"
-          class="inline-flex h-12 items-center justify-center rounded-xl border border-neutral-200 bg-transparent px-8 text-base font-medium text-neutral-900 transition-colors hover:bg-neutral-50 hover:text-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
+          class="inline-flex h-12 items-center justify-center rounded-xl border-2 border-neutral-300 px-8 text-base font-medium text-neutral-900 transition-all hover:-translate-y-1 hover:border-neutral-400 dark:border-neutral-700 dark:text-white dark:hover:border-neutral-600"
         >
-          Contacto
+          {{ i18n.translations().home.hero.ctaSecondary }}
         </a>
         <a
           href="https://www.linkedin.com/in/francogonzalezweb/"
