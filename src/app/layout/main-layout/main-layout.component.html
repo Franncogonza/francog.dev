@@ -102,13 +102,12 @@
         >
           <div class="py-2">
             <button
-              *ngFor="let lang of languages; let i = index"
+              *ngFor="let lang of languages"
               (click)="changeLanguage(lang.code)"
               class="w-full flex items-center gap-3 px-4 py-3 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-150 group"
               [class.bg-primary-50]="lang.code === i18n.language"
               [class.dark:bg-primary-900/20]="lang.code === i18n.language"
               [class.font-semibold]="lang.code === i18n.language"
-              [style.animation-delay]="i * 50 + 'ms'"
             >
               <span class="text-xl group-hover:scale-110 transition-transform duration-200">{{ lang.flag }}</span>
               <span class="flex-1 text-left">{{ lang.name }}</span>
