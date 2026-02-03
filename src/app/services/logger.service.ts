@@ -13,6 +13,14 @@ export type ErrorSeverity = 'info' | 'warning' | 'error' | 'critical';
 export class LoggerService {
   private isDevelopment = !this.isProd();
 
+  // Mapa de mensajes de error por código HTTP
+  private readonly errorMessages: Record<number, string> = {
+    0: 'No hay conexión a internet. Verifica tu conexión.',
+    408: 'La solicitud tardó demasiado. Intenta de nuevo.',
+    429: 'Demasiadas solicitudes. Por favor, espera un momento.',
+    504: 'La solicitud tardó demasiado. Intenta de nuevo.',
+  };
+
   log(message: string, context?: string): void {
     console.log(`[${context || 'APP'}] ${message}`);
   }
@@ -74,17 +82,15 @@ export class LoggerService {
       return typeof err === 'object' && err !== null && 'message' in err;
     };
 
-    // Mensajes específicos según tipo de error
+    // Buscar mensaje específico por código de error
     if (hasStatus(error)) {
-      if (error.status === 0) {
-        return 'No hay conexión a internet. Verifica tu conexión.';
+      // Buscar en el mapa de errores
+      const specificMessage = this.errorMessages[error.status];
+      if (specificMessage) {
+        return specificMessage;
       }
-      if (error.status === 408 || error.status === 504) {
-        return 'La solicitud tardó demasiado. Intenta de nuevo.';
-      }
-      if (error.status === 429) {
-        return 'Demasiadas solicitudes. Por favor, espera un momento.';
-      }
+
+      // Mensajes genéricos por rango de código
       if (error.status >= 500) {
         return 'Error en el servidor. Intenta más tarde.';
       }
@@ -93,6 +99,7 @@ export class LoggerService {
       }
     }
 
+    // Fallback a mensaje del error si existe
     if (hasMessage(error)) {
       return error.message;
     }
