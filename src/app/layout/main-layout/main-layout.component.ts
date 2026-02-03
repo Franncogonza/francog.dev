@@ -2,6 +2,7 @@ import { Component, HostListener, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlatformService } from '../../../services/platform.service';
+import { I18nService, Language } from '../../services/i18n.service';
 
 @Component({
   standalone: true,
@@ -14,9 +15,17 @@ export class MainLayoutComponent {
   isMenuOpen = false;
   screenIsMobile = false;
   isDarkMode = false;
+  isLangMenuOpen = false;
 
   private readonly platform = inject(PlatformService);
+  readonly i18n = inject(I18nService);
   currentYear: number = new Date().getFullYear();
+
+  languages = [
+    { code: 'es' as Language, name: 'Español', flag: '🇪🇸' },
+    { code: 'en' as Language, name: 'English', flag: '🇺🇸' },
+    { code: 'pt' as Language, name: 'Português', flag: '🇧🇷' },
+  ];
 
   ngOnInit() {
     if (this.platform.isBrowser()) {
@@ -48,5 +57,14 @@ export class MainLayoutComponent {
 
   closeMenu() {
     this.isMenuOpen = false;
+  }
+
+  changeLanguage(lang: Language) {
+    this.i18n.setLanguage(lang);
+    this.isLangMenuOpen = false;
+  }
+
+  get currentLanguage() {
+    return this.languages.find(l => l.code === this.i18n.language);
   }
 }

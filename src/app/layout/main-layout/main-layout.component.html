@@ -70,6 +70,40 @@
         🚀 Descargar CV
       </a>
 
+      <!-- Language Selector -->
+      <div class="relative">
+        <button
+          (click)="isLangMenuOpen = !isLangMenuOpen"
+          class="inline-flex items-center justify-center gap-2 px-3 h-10 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200 focus-visible:ring-2 ring-offset-2 dark:ring-offset-neutral-950"
+          aria-label="Select language"
+          [attr.aria-expanded]="isLangMenuOpen"
+        >
+          <span class="text-lg">{{ currentLanguage?.flag }}</span>
+          <span class="hidden sm:inline text-sm font-medium text-neutral-700 dark:text-neutral-200">{{ currentLanguage?.code?.toUpperCase() }}</span>
+        </button>
+
+        <!-- Dropdown -->
+        <div
+          *ngIf="isLangMenuOpen"
+          class="absolute right-0 mt-2 w-48 rounded-lg border-2 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-lg z-50"
+        >
+          <div class="py-1">
+            <button
+              *ngFor="let lang of languages"
+              (click)="changeLanguage(lang.code)"
+              class="w-full flex items-center gap-3 px-4 py-2 text-sm text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              [class.bg-neutral-100]="lang.code === i18n.language"
+              [class.dark:bg-neutral-800]="lang.code === i18n.language"
+              [class.font-semibold]="lang.code === i18n.language"
+            >
+              <span class="text-lg">{{ lang.flag }}</span>
+              <span>{{ lang.name }}</span>
+              <span *ngIf="lang.code === i18n.language" class="ml-auto text-primary-600 dark:text-primary-400">✓</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Toggle Dark Mode -->
       <button
         (click)="toggleDarkMode()"
