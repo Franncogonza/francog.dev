@@ -1,8 +1,8 @@
 import { Component, computed, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../../environments/environment';
 import { LoggerService } from '../../services/logger.service';
 import { SeoService } from '../../services/seo.service';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -29,7 +29,8 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private readonly logger: LoggerService,
-    private readonly seo: SeoService
+    private readonly seo: SeoService,
+    private readonly contactService: ContactService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +65,10 @@ export class ContactComponent implements OnInit {
   });
 
   // Handle cambios
-  onInput(field: 'name' | 'email' | 'message', value: string) {
+  onInput(field: 'name' | 'email' | 'message', event: Event): void {
+    const target = event.target as HTMLInputElement | HTMLTextAreaElement;
+    const value = target.value;
+
     if (field === 'name') this.name.set(value);
     if (field === 'email') this.email.set(value);
     if (field === 'message') this.message.set(value);
@@ -73,7 +77,7 @@ export class ContactComponent implements OnInit {
   }
 
   // Submit
-  async onSubmit() {
+  onSubmit(): void {
     this.touched.set({ name: true, email: true, message: true });
 
     if (!this.formValid()) return;
@@ -81,60 +85,36 @@ export class ContactComponent implements OnInit {
     this.formStatus.set('sending');
     this.formError.set(null);
 
-    const formData = new FormData();
-    formData.append('name', this.name());
-    formData.append('email', this.email());
-    formData.append('message', this.message());
+    const formData = {
+      name: this.name(),
+      email: this.email(),
+      message: this.message(),
+    };
 
-    try {
-      const contactUrl = `${environment.contact.formSubmitEndpoint}/${environment.contact.destinationEmail}`;
-      const res = await fetch(contactUrl, {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' },
-      });
-
-      if (res.ok) {
+    this.contactService.submitContactForm(formData).subscribe({
+      next: () => {
         this.formStatus.set('success');
         this.formError.set(null);
         this.logger.log('Formulario enviado exitosamente', 'ContactComponent');
+        
         setTimeout(() => {
           this.resetForm();
           this.formStatus.set('idle');
         }, 2500);
 
-        return;
-      } else if (res.status === 429) {
-        this.handleError('Demasiadas solicitudes. Intenta de nuevo en unos minutos.', res);
-      } else if (res.status >= 500) {
-        this.handleError('Error en el servidor. Intenta de nuevo más tarde.', res);
-      } else {
-        this.handleError('Error al enviar el formulario. Verifica los datos.', res);
-      }
-    } catch (error: unknown) {
-      const isTypeError = (err: unknown): err is TypeError => err instanceof TypeError;
-      const hasMessage = (err: unknown): err is { message: string } => 
-        typeof err === 'object' && err !== null && 'message' in err;
-      
-      if (isTypeError(error) && error.message.includes('Failed to fetch')) {
-        this.handleError('No hay conexión a internet. Verifica tu conexión.', error);
-      } else if (hasMessage(error)) {
-        this.handleError('Error de red. Intenta de nuevo.', error);
-      }
-    } finally {
-      setTimeout(() => {
-        if (this.formStatus() === 'success') {
-          this.formStatus.set('idle');
-          this.formError.set(null);
-        }
-      }, 4000);
-    }
-  }
-
-  private handleError(message: string, error: unknown): void {
-    this.formStatus.set('error');
-    this.formError.set(message);
-    this.logger.error('Error al enviar formulario de contacto', error, 'ContactComponent');
+        setTimeout(() => {
+          if (this.formStatus() === 'success') {
+            this.formStatus.set('idle');
+            this.formError.set(null);
+          }
+        }, 4000);
+      },
+      error: (error: unknown) => {
+        const errorMessage = this.contactService.getErrorMessage(error);
+        this.formStatus.set('error');
+        this.formError.set(errorMessage);
+      },
+    });
   }
 
   resetForm() {
