@@ -11,6 +11,14 @@ export interface Translation {
     portfolio: string;
     blog: string;
     contact: string;
+    downloadCV: string;
+  };
+  // Common
+  common: {
+    available: string;
+    backToBlog: string;
+    postNotFound: string;
+    postNotFoundDesc: string;
   };
   // Home
   home: {
@@ -21,15 +29,36 @@ export interface Translation {
       cta: string;
       ctaSecondary: string;
     };
-    skills: {
+    experience: {
       title: string;
       subtitle: string;
+      businessImpact: string;
+      businessImpactDesc: string;
+      incidentManagement: string;
+      incidentManagementDesc: string;
+      refactoring: string;
+      refactoringDesc: string;
+      aiAndFuture: string;
+      aiAndFutureDesc: string;
+    };
+    focus: {
+      title: string;
+      angular: string;
+      angularDesc: string;
+      performance: string;
+      performanceDesc: string;
+      leadership: string;
+      leadershipDesc: string;
     };
   };
   // About
   about: {
     title: string;
-    description: string;
+    intro: string;
+    currentRole: string;
+    leadership: string;
+    aiTraining: string;
+    skillsTitle: string;
   };
   // Portfolio
   portfolio: {
@@ -61,6 +90,7 @@ export interface Translation {
     sending: string;
     sent: string;
     retry: string;
+    success: string;
     errors: {
       nameRequired: string;
       nameMin: string;
@@ -85,23 +115,51 @@ const translations: Record<Language, Translation> = {
       portfolio: 'Portfolio',
       blog: 'Blog',
       contact: 'Contacto',
+      downloadCV: 'Descargar CV',
+    },
+    common: {
+      available: 'Disponible para oportunidades (Remote-first)',
+      backToBlog: 'Volver al Blog',
+      postNotFound: 'Post no encontrado 😢',
+      postNotFoundDesc: 'El artículo que buscas no existe o fue removido.',
     },
     home: {
       hero: {
-        greeting: '👋 Hola, soy',
-        title: 'Franco David',
-        subtitle: 'Full Stack Developer especializado en Angular, Node.js y arquitectura de sistemas. Construyo productos digitales escalables.',
-        cta: 'Ver proyectos',
+        greeting: 'Hola, soy',
+        title: 'Franco',
+        subtitle: 'Tech Lead & Angular Developer. Más de 6 años construyendo productos reales. Actualmente trabajo en el motor de reservas de RIU Hotels, en entornos de alto tráfico y producción crítica. Foco en estabilidad, performance, calidad de código y arquitectura frontend mantenible.',
+        cta: 'Ver portfolio',
         ctaSecondary: 'Contactar',
       },
-      skills: {
-        title: 'Stack Técnico',
-        subtitle: 'Tecnologías con las que trabajo día a día',
+      experience: {
+        title: 'Experiencia en Producción Real',
+        subtitle: 'Más allá del código: gestión de sistemas críticos donde la estabilidad es la prioridad.',
+        businessImpact: 'Impacto en Negocio',
+        businessImpactDesc: 'Resolución de +900 incidencias productivas (B2B/B2C), contribuyendo a la estabilidad y continuidad operativa de una plataforma de alto tráfico.',
+        incidentManagement: 'Gestión de Incidentes',
+        incidentManagementDesc: 'Liderazgo de célula crítica: Análisis de causa raíz (RCA), coordinación técnica y resolución de issues complejos bajo presión.',
+        refactoring: 'Refactorización & Performance',
+        refactoringDesc: 'Reducción de deuda técnica, optimización de bundles y mejora medible de tiempos de carga en módulos críticos.',
+        aiAndFuture: 'IA & Futuro',
+        aiAndFutureDesc: 'Formación en IA Generativa & LLMs (PUC-Rio), orientada a automatización aplicada a ingeniería de software.',
+      },
+      focus: {
+        title: 'Áreas de Foco',
+        angular: 'Angular Architecture',
+        angularDesc: 'Arquitecturas Angular modulares y mantenibles, con foco en escalabilidad, SSR cuando aporta valor y sostenibilidad técnica del producto.',
+        performance: 'Alto Rendimiento',
+        performanceDesc: 'Optimización de performance, análisis de cuellos de botella, mejora de tiempos de carga y estabilidad en entornos de alto tráfico.',
+        leadership: 'Liderazgo Técnico',
+        leadershipDesc: 'Liderazgo técnico, definición de estándares, code reviews, coordinación entre ingeniería, QA y producto.',
       },
     },
     about: {
-      title: 'Sobre mí',
-      description: 'Desarrollador Full Stack con pasión por crear soluciones eficientes y escalables.',
+      title: 'Sobre mí — Perfil profesional',
+      intro: 'Soy Franco Gonzalez, Tech Lead & Angular Developer, con más de 6 años trabajando en productos reales en entornos de producción.',
+      currentRole: 'Actualmente trabajo en RIU Hotels, optimizando el motor de reservas en contextos de alto tráfico, con foco en performance, estabilidad y arquitectura frontend mantenible.',
+      leadership: 'Lidero iniciativas de gestión de incidentes en producción crítica, refactorización técnica, code reviews y mejora continua en calidad de código.',
+      aiTraining: 'Me estoy formando en IA Generativa & LLMs (PUC-Rio), con foco en automatización aplicada a ingeniería de software.',
+      skillsTitle: 'Habilidades Técnicas 🛠️',
     },
     portfolio: {
       title: 'Proyectos Seleccionados',
@@ -130,6 +188,7 @@ const translations: Record<Language, Translation> = {
       sending: 'Enviando…',
       sent: '✅ Enviado',
       retry: '🔄 Reintentar',
+      success: '✅ Mensaje enviado. Te respondo pronto.',
       errors: {
         nameRequired: 'El nombre es obligatorio.',
         nameMin: 'Mínimo 3 caracteres.',
@@ -151,23 +210,51 @@ const translations: Record<Language, Translation> = {
       portfolio: 'Portfolio',
       blog: 'Blog',
       contact: 'Contact',
+      downloadCV: 'Download CV',
+    },
+    common: {
+      available: 'Available for opportunities (Remote-first)',
+      backToBlog: 'Back to Blog',
+      postNotFound: 'Post not found 😢',
+      postNotFoundDesc: 'The article you are looking for does not exist or was removed.',
     },
     home: {
       hero: {
-        greeting: '👋 Hi, I\'m',
-        title: 'Franco David',
-        subtitle: 'Full Stack Developer specialized in Angular, Node.js and systems architecture. I build scalable digital products.',
-        cta: 'View projects',
+        greeting: 'Hi, I\'m',
+        title: 'Franco',
+        subtitle: 'Tech Lead & Angular Developer. 6+ years building real products. Currently working on the RIU Hotels booking engine, in high-traffic and critical production environments. Focus on stability, performance, code quality and maintainable frontend architecture.',
+        cta: 'View portfolio',
         ctaSecondary: 'Contact me',
       },
-      skills: {
-        title: 'Tech Stack',
-        subtitle: 'Technologies I work with every day',
+      experience: {
+        title: 'Real Production Experience',
+        subtitle: 'Beyond code: managing critical systems where stability is the priority.',
+        businessImpact: 'Business Impact',
+        businessImpactDesc: 'Resolution of 900+ production incidents (B2B/B2C), contributing to stability and operational continuity of a high-traffic platform.',
+        incidentManagement: 'Incident Management',
+        incidentManagementDesc: 'Critical cell leadership: Root cause analysis (RCA), technical coordination and resolution of complex issues under pressure.',
+        refactoring: 'Refactoring & Performance',
+        refactoringDesc: 'Technical debt reduction, bundle optimization and measurable improvement of load times in critical modules.',
+        aiAndFuture: 'AI & Future',
+        aiAndFutureDesc: 'Training in Generative AI & LLMs (PUC-Rio), focused on automation applied to software engineering.',
+      },
+      focus: {
+        title: 'Focus Areas',
+        angular: 'Angular Architecture',
+        angularDesc: 'Modular and maintainable Angular architectures, focused on scalability, SSR when it adds value and technical sustainability.',
+        performance: 'High Performance',
+        performanceDesc: 'Performance optimization, bottleneck analysis, load time improvement and stability in high-traffic environments.',
+        leadership: 'Technical Leadership',
+        leadershipDesc: 'Technical leadership, standards definition, code reviews, coordination between engineering, QA and product.',
       },
     },
     about: {
-      title: 'About me',
-      description: 'Full Stack Developer with a passion for creating efficient and scalable solutions.',
+      title: 'About me — Professional Profile',
+      intro: 'I\'m Franco Gonzalez, Tech Lead & Angular Developer, with 6+ years working on real products in production environments.',
+      currentRole: 'Currently working at RIU Hotels, optimizing the booking engine in high-traffic contexts, focused on performance, stability and maintainable frontend architecture.',
+      leadership: 'I lead initiatives in critical production incident management, technical refactoring, code reviews and continuous improvement in code quality.',
+      aiTraining: 'I\'m training in Generative AI & LLMs (PUC-Rio), focused on automation applied to software engineering.',
+      skillsTitle: 'Technical Skills 🛠️',
     },
     portfolio: {
       title: 'Selected Projects',
@@ -196,6 +283,7 @@ const translations: Record<Language, Translation> = {
       sending: 'Sending…',
       sent: '✅ Sent',
       retry: '🔄 Retry',
+      success: '✅ Message sent. I\'ll respond soon.',
       errors: {
         nameRequired: 'Name is required.',
         nameMin: 'Minimum 3 characters.',
@@ -217,23 +305,51 @@ const translations: Record<Language, Translation> = {
       portfolio: 'Portfolio',
       blog: 'Blog',
       contact: 'Contato',
+      downloadCV: 'Baixar CV',
+    },
+    common: {
+      available: 'Disponível para oportunidades (Remote-first)',
+      backToBlog: 'Voltar ao Blog',
+      postNotFound: 'Post não encontrado 😢',
+      postNotFoundDesc: 'O artigo que você está procurando não existe ou foi removido.',
     },
     home: {
       hero: {
-        greeting: '👋 Olá, sou',
-        title: 'Franco David',
-        subtitle: 'Desenvolvedor Full Stack especializado em Angular, Node.js e arquitetura de sistemas. Construo produtos digitais escaláveis.',
-        cta: 'Ver projetos',
+        greeting: 'Olá, sou',
+        title: 'Franco',
+        subtitle: 'Tech Lead & Angular Developer. 6+ anos construindo produtos reais. Atualmente trabalho no motor de reservas do RIU Hotels, em ambientes de alto tráfego e produção crítica. Foco em estabilidade, performance, qualidade de código e arquitetura frontend sustentável.',
+        cta: 'Ver portfolio',
         ctaSecondary: 'Contato',
       },
-      skills: {
-        title: 'Stack Técnico',
-        subtitle: 'Tecnologias com as quais trabalho todos os dias',
+      experience: {
+        title: 'Experiência em Produção Real',
+        subtitle: 'Além do código: gestão de sistemas críticos onde a estabilidade é prioridade.',
+        businessImpact: 'Impacto no Negócio',
+        businessImpactDesc: 'Resolução de +900 incidências produtivas (B2B/B2C), contribuindo para a estabilidade e continuidade operacional de uma plataforma de alto tráfego.',
+        incidentManagement: 'Gestão de Incidentes',
+        incidentManagementDesc: 'Liderança de célula crítica: Análise de causa raiz (RCA), coordenação técnica e resolução de issues complexos sob pressão.',
+        refactoring: 'Refatoração & Performance',
+        refactoringDesc: 'Redução de dívida técnica, otimização de bundles e melhoria mensurável de tempos de carga em módulos críticos.',
+        aiAndFuture: 'IA & Futuro',
+        aiAndFutureDesc: 'Formação em IA Generativa & LLMs (PUC-Rio), orientada à automação aplicada à engenharia de software.',
+      },
+      focus: {
+        title: 'Áreas de Foco',
+        angular: 'Arquitetura Angular',
+        angularDesc: 'Arquiteturas Angular modulares e sustentáveis, com foco em escalabilidade, SSR quando agrega valor e sustentabilidade técnica.',
+        performance: 'Alto Desempenho',
+        performanceDesc: 'Otimização de performance, análise de gargalos, melhoria de tempos de carga e estabilidade em ambientes de alto tráfego.',
+        leadership: 'Liderança Técnica',
+        leadershipDesc: 'Liderança técnica, definição de padrões, code reviews, coordenação entre engenharia, QA e produto.',
       },
     },
     about: {
-      title: 'Sobre mim',
-      description: 'Desenvolvedor Full Stack com paixão por criar soluções eficientes e escaláveis.',
+      title: 'Sobre mim — Perfil profissional',
+      intro: 'Sou Franco Gonzalez, Tech Lead & Angular Developer, com 6+ anos trabalhando em produtos reais em ambientes de produção.',
+      currentRole: 'Atualmente trabalho no RIU Hotels, otimizando o motor de reservas em contextos de alto tráfego, com foco em performance, estabilidade e arquitetura frontend sustentável.',
+      leadership: 'Lidero iniciativas de gestão de incidentes em produção crítica, refatoração técnica, code reviews e melhoria contínua na qualidade de código.',
+      aiTraining: 'Estou me formando em IA Generativa & LLMs (PUC-Rio), com foco em automação aplicada à engenharia de software.',
+      skillsTitle: 'Habilidades Técnicas 🛠️',
     },
     portfolio: {
       title: 'Projetos Selecionados',
@@ -262,6 +378,7 @@ const translations: Record<Language, Translation> = {
       sending: 'Enviando…',
       sent: '✅ Enviado',
       retry: '🔄 Tentar novamente',
+      success: '✅ Mensagem enviada. Respondo em breve.',
       errors: {
         nameRequired: 'O nome é obrigatório.',
         nameMin: 'Mínimo 3 caracteres.',

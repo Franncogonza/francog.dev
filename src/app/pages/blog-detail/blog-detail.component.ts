@@ -1,8 +1,9 @@
-import { Component, computed, inject, effect } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BLOG_POSTS } from '../../../mocks/blog.data';
 import { SeoService } from '../../services/seo.service';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -13,6 +14,7 @@ import { SeoService } from '../../services/seo.service';
 export class BlogDetailComponent {
   route = inject(ActivatedRoute);
   seo = inject(SeoService);
+  readonly i18n = inject(I18nService);
 
   slug = this.route.snapshot.paramMap.get('slug');
 

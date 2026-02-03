@@ -1,39 +1,29 @@
 <section class="container py-24">
   <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-8">
-    Sobre mí — Perfil profesional
+    {{ i18n.translations().about.title }}
   </h1>
 
   <div class="flex flex-col-reverse lg:flex-row items-center gap-12">
     <!-- Texto -->
     <div class="flex-1">
       <p class="text-lg leading-relaxed mb-6 text-neutral-700 dark:text-neutral-300">
-        Soy <span class="font-semibold text-neutral-900 dark:text-white">Franco Gonzalez</span>,
-        <span class="font-semibold text-blue-600 dark:text-blue-400">
-          Tech Lead & Angular Developer </span
-        >, con más de 6 años trabajando en productos reales en entornos de producción.
+        {{ i18n.translations().about.intro }}
       </p>
 
       <p class="text-lg leading-relaxed mb-6 text-neutral-700 dark:text-neutral-300">
-        Actualmente trabajo en
-        <span class="font-semibold text-neutral-900 dark:text-white">RIU Hotels</span>, optimizando
-        el motor de reservas en contextos de alto tráfico, con foco en
-        <strong>performance, estabilidad y arquitectura frontend mantenible</strong>.
+        {{ i18n.translations().about.currentRole }}
       </p>
 
       <p class="text-lg leading-relaxed mb-6 text-neutral-700 dark:text-neutral-300">
-        Lidero iniciativas de <strong>gestión de incidentes en producción crítica</strong>,
-        <strong>refactorización técnica</strong>, code reviews y mejora continua en calidad de
-        código, trabajando con equipos distribuidos en Europa y LATAM.
+        {{ i18n.translations().about.leadership }}
       </p>
 
       <p class="text-lg leading-relaxed mb-6 text-neutral-700 dark:text-neutral-300">
-        Me estoy formando en <strong>IA Generativa & LLMs (PUC-Rio)</strong>, con foco en
-        automatización aplicada a ingeniería de software, productividad y reducción de deuda técnica
-        — sin hype.
+        {{ i18n.translations().about.aiTraining }}
       </p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4 text-neutral-900 dark:text-white">
-        Habilidades Técnicas <span>🛠️</span>
+        {{ i18n.translations().about.skillsTitle }}
       </h2>
 
       <div class="flex flex-wrap gap-3">

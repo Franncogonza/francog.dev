@@ -58,24 +58,24 @@
         class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
       >
         <span>←</span>
-        <span>Volver al Blog</span>
+        <span>{{ i18n.translations().common.backToBlog }}</span>
       </a>
     </footer>
   </article>
   } @else {
   <div class="container max-w-4xl text-center py-20">
     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-neutral-900 dark:text-white">
-      Post no encontrado 😢
+      {{ i18n.translations().common.postNotFound }}
     </h2>
     <p class="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
-      El artículo que buscas no existe o fue removido.
+      {{ i18n.translations().common.postNotFoundDesc }}
     </p>
     <a 
       routerLink="/blog" 
       class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
     >
       <span>←</span>
-      <span>Volver al Blog</span>
+      <span>{{ i18n.translations().common.backToBlog }}</span>
     </a>
   </div>
   }
