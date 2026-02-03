@@ -76,11 +76,15 @@ export interface Translation {
     error: string;
     retry: string;
     noArticles: string;
+    noArticlesHint: string;
     readArticle: string;
     articlesLoaded: string;
+    showingCache: string;
+    minRead: string;
   };
   // Contact
   contact: {
+    label: string;
     title: string;
     subtitle: string;
     name: string;
@@ -91,6 +95,8 @@ export interface Translation {
     sent: string;
     retry: string;
     success: string;
+    minChars: string;
+    alternativeHint: string;
     errors: {
       nameRequired: string;
       nameMin: string;
@@ -104,6 +110,7 @@ export interface Translation {
   footer: {
     rights: string;
     madeWith: string;
+    contact: string;
   };
 }
 
@@ -175,10 +182,14 @@ const translations: Record<Language, Translation> = {
       error: 'No se pudieron cargar los artículos.',
       retry: 'Reintentar',
       noArticles: 'Todavía no hay artículos publicados.',
+      noArticlesHint: 'Publicaré notas técnicas a medida que avance con proyectos y aprendizajes en producción.',
       readArticle: 'Leer artículo',
       articlesLoaded: 'artículos cargados',
+      showingCache: 'Mostrando caché si hay datos disponibles.',
+      minRead: 'min de lectura',
     },
     contact: {
+      label: 'Contacto',
       title: 'Hablemos.',
       subtitle: 'Si tenés una propuesta, idea o querés colaborar, dejame un mensaje. Respondo normalmente en 24–48h.',
       name: 'Nombre',
@@ -189,6 +200,8 @@ const translations: Record<Language, Translation> = {
       sent: '✅ Enviado',
       retry: '🔄 Reintentar',
       success: '✅ Mensaje enviado. Te respondo pronto.',
+      minChars: 'Mínimo 10 caracteres',
+      alternativeHint: 'Alternativa rápida: LinkedIn (recomendado) o email profesional.',
       errors: {
         nameRequired: 'El nombre es obligatorio.',
         nameMin: 'Mínimo 3 caracteres.',
@@ -201,6 +214,7 @@ const translations: Record<Language, Translation> = {
     footer: {
       rights: 'Todos los derechos reservados.',
       madeWith: 'Hecho con',
+      contact: 'Contacto',
     },
   },
   en: {
@@ -270,10 +284,14 @@ const translations: Record<Language, Translation> = {
       error: 'Could not load articles.',
       retry: 'Retry',
       noArticles: 'No articles published yet.',
+      noArticlesHint: 'I\'ll publish technical notes as I progress with projects and production learnings.',
       readArticle: 'Read article',
       articlesLoaded: 'articles loaded',
+      showingCache: 'Showing cache if data is available.',
+      minRead: 'min read',
     },
     contact: {
+      label: 'Contact',
       title: 'Let\'s talk.',
       subtitle: 'If you have a proposal, idea or want to collaborate, leave me a message. I usually respond within 24–48h.',
       name: 'Name',
@@ -284,6 +302,8 @@ const translations: Record<Language, Translation> = {
       sent: '✅ Sent',
       retry: '🔄 Retry',
       success: '✅ Message sent. I\'ll respond soon.',
+      minChars: 'Minimum 10 characters',
+      alternativeHint: 'Quick alternative: LinkedIn (recommended) or professional email.',
       errors: {
         nameRequired: 'Name is required.',
         nameMin: 'Minimum 3 characters.',
@@ -296,6 +316,7 @@ const translations: Record<Language, Translation> = {
     footer: {
       rights: 'All rights reserved.',
       madeWith: 'Made with',
+      contact: 'Contact',
     },
   },
   pt: {
@@ -365,10 +386,14 @@ const translations: Record<Language, Translation> = {
       error: 'Não foi possível carregar os artigos.',
       retry: 'Tentar novamente',
       noArticles: 'Ainda não há artigos publicados.',
+      noArticlesHint: 'Publicarei notas técnicas à medida que avançar com projetos e aprendizados em produção.',
       readArticle: 'Ler artigo',
       articlesLoaded: 'artigos carregados',
+      showingCache: 'Mostrando cache se houver dados disponíveis.',
+      minRead: 'min de leitura',
     },
     contact: {
+      label: 'Contato',
       title: 'Vamos conversar.',
       subtitle: 'Se você tem uma proposta, ideia ou quer colaborar, deixe-me uma mensagem. Normalmente respondo em 24–48h.',
       name: 'Nome',
@@ -379,6 +404,8 @@ const translations: Record<Language, Translation> = {
       sent: '✅ Enviado',
       retry: '🔄 Tentar novamente',
       success: '✅ Mensagem enviada. Respondo em breve.',
+      minChars: 'Mínimo 10 caracteres',
+      alternativeHint: 'Alternativa rápida: LinkedIn (recomendado) ou email profissional.',
       errors: {
         nameRequired: 'O nome é obrigatório.',
         nameMin: 'Mínimo 3 caracteres.',
@@ -391,6 +418,7 @@ const translations: Record<Language, Translation> = {
     footer: {
       rights: 'Todos os direitos reservados.',
       madeWith: 'Feito com',
+      contact: 'Contato',
     },
   },
 };

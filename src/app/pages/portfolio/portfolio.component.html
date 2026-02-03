@@ -25,20 +25,20 @@
       <div class="flex flex-col sm:flex-row gap-4">
         @if (project.links.caseStudy) {
           @if (project.links.caseStudy.startsWith('/')) {
-            <a [routerLink]="project.links.caseStudy" class="btn w-full sm:w-auto">Leer Case Study</a>
+            <a [routerLink]="project.links.caseStudy" class="btn w-full sm:w-auto">{{ i18n.translations().portfolio.caseStudy }}</a>
           } @else {
             <a [href]="project.links.caseStudy" class="btn w-full sm:w-auto">Case Study</a>
           }
         }
         @if (project.links.demo) {
-          <a [href]="project.links.demo" class="btn w-full sm:w-auto">Ver Demo</a>
+          <a [href]="project.links.demo" class="btn w-full sm:w-auto">{{ i18n.translations().portfolio.viewDemo }}</a>
         }
         @if (project.links.detail) {
-          <a [href]="project.links.detail" class="btn btn-secondary w-full sm:w-auto">Detalle Técnico</a>
+          <a [href]="project.links.detail" class="btn btn-secondary w-full sm:w-auto">{{ i18n.translations().portfolio.technicalDetail }}</a>
         }
         @if (project.links.github) {
           @if (project.links.github.startsWith('http')) {
-            <a [href]="project.links.github" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full sm:w-auto">Ver en GitHub</a>
+            <a [href]="project.links.github" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full sm:w-auto">{{ i18n.translations().portfolio.viewGithub }}</a>
           } @else {
             <a [href]="project.links.github" class="btn btn-secondary w-full sm:w-auto">GitHub</a>
           }

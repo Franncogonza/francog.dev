@@ -12,7 +12,7 @@
   <div class="container py-16 md:py-24">
     <header class="mx-auto max-w-2xl text-center">
       <p class="text-sm font-medium tracking-wide text-neutral-500 dark:text-neutral-400">
-        Contacto
+        {{ i18n.translations().contact.label }}
       </p>
 
       <h1
@@ -51,7 +51,7 @@
           aria-live="polite"
         >
           <p class="text-sm font-semibold text-emerald-700 dark:text-emerald-200">
-            ✅ Mensaje enviado. Te respondo pronto.
+            {{ i18n.translations().contact.success }}
           </p>
         </div>
 
@@ -142,7 +142,7 @@
                 {{ messageError() }}
               </p>
 
-              <p class="text-xs text-neutral-500 dark:text-neutral-400">Mínimo 10 caracteres</p>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400">{{ i18n.translations().contact.minChars }}</p>
             </div>
           </div>
 
@@ -172,7 +172,7 @@
             </button>
 
             <p class="text-xs text-neutral-500 dark:text-neutral-400 text-center">
-              Alternativa rápida: LinkedIn (recomendado) o email profesional.
+              {{ i18n.translations().contact.alternativeHint }}
             </p>
           </div>
         </div>
