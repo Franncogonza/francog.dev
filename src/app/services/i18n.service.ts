@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export type Language = 'es' | 'en' | 'pt';
 
@@ -280,18 +281,22 @@ const translations: Record<Language, Translation> = {
 @Injectable({ providedIn: 'root' })
 export class I18nService {
   private currentLanguage = signal<Language>('es');
+  private platformId = inject(PLATFORM_ID);
+  private isBrowser = isPlatformBrowser(this.platformId);
   
   constructor() {
-    // Detectar idioma del navegador
-    const browserLang = navigator.language.split('-')[0] as Language;
-    if (['es', 'en', 'pt'].includes(browserLang)) {
-      this.currentLanguage.set(browserLang);
-    }
-    
-    // Cargar idioma guardado
-    const savedLang = localStorage.getItem('language') as Language;
-    if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
-      this.currentLanguage.set(savedLang);
+    if (this.isBrowser) {
+      // Detectar idioma del navegador
+      const browserLang = navigator.language.split('-')[0] as Language;
+      if (['es', 'en', 'pt'].includes(browserLang)) {
+        this.currentLanguage.set(browserLang);
+      }
+      
+      // Cargar idioma guardado
+      const savedLang = localStorage.getItem('language') as Language;
+      if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
+        this.currentLanguage.set(savedLang);
+      }
     }
   }
 
@@ -305,7 +310,9 @@ export class I18nService {
 
   setLanguage(lang: Language): void {
     this.currentLanguage.set(lang);
-    localStorage.setItem('language', lang);
+    if (this.isBrowser) {
+      localStorage.setItem('language', lang);
+    }
   }
 
   t(key: string): string {
