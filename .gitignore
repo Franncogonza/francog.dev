@@ -1,17 +1,46 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# --------------------------------------------------
+# Build / compiled output
+# --------------------------------------------------
+/dist/
+/tmp/
+/out-tsc/
+/bazel-out/
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# --------------------------------------------------
+# Dependencies
+# --------------------------------------------------
+/node_modules/
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# --------------------------------------------------
+# Package manager logs
+# --------------------------------------------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# IDEs and editors
+# --------------------------------------------------
+# Angular
+# --------------------------------------------------
+/.angular/cache/
+
+# --------------------------------------------------
+# Tests / coverage
+# --------------------------------------------------
+/coverage/
+/test-results/
+testem.log
+
+# --------------------------------------------------
+# Environment variables / secrets
+# --------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --------------------------------------------------
+# IDEs / editors
+# --------------------------------------------------
 .idea/
 .project
 .classpath
@@ -19,6 +48,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.history/
 
 # Visual Studio Code
 .vscode/*
@@ -26,19 +56,27 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
-/.angular/cache
+# --------------------------------------------------
+# Sass / tooling
+# --------------------------------------------------
 .sass-cache/
 /connect.lock
-/coverage
 /libpeerconnection.log
-testem.log
-/typings
+/typings/
 
-# System files
+# --------------------------------------------------
+# OS generated files
+# --------------------------------------------------
 .DS_Store
 Thumbs.db
 
-.env
+# --------------------------------------------------
+# Temporary / backup files
+# --------------------------------------------------
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*~
